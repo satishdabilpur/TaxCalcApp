@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using TaxCalcApp.Enums;
 using TaxCalcApp.Models;
 
@@ -36,22 +37,27 @@ namespace TaxCalcApp
                 ITaxSlab taxSlab = GetTaxSlab(selectedTaxTearSlab);
                 var taxSlabRange = taxSlab.GetTaxSlabRanges();
                 double calcTax = 0;
+                lblTaxSegregate.Content = "Tax Segregated details: \r\n";
                 do
                 {
                     var taxSlabRangeItem = taxSlabRange.First(slab => Amount >= slab.LowRange && Amount <= slab.HighRange);
                     var amountToPercentage = (Amount - taxSlabRangeItem.LowRange + 1);
-                    calcTax += CalcPercentageAmount(amountToPercentage, taxSlabRangeItem.Percentage);
-                    Amount -= amountToPercentage;
+                    double calcPerAmount = CalcPercentageAmount(amountToPercentage, taxSlabRangeItem.Percentage);
 
+                    string segragareAmt = string.Format(new CultureInfo("en-IN", false), "{0:n}", calcPerAmount);
+                    lblTaxSegregate.Content += $"From {taxSlabRangeItem.LowRange} to {(taxSlabRangeItem.HighRange < Amount ? taxSlabRangeItem.HighRange : Amount)} ::> Rs. {segragareAmt}/- \r\n";
+
+                    calcTax += calcPerAmount;
+                    Amount -= amountToPercentage;
                 } while (Amount >= 0);
 
-                lblResultText.Content = $" Total tax for this FY2020-21 :";
+                lblResultText.Content = $" Total tax for your income:";
                 string convertedAmount = string.Format(new CultureInfo("en-IN", false), "{0:n}", calcTax);
                 lblTaxAmount.Content = $"Rs. {convertedAmount}/-";
             }
             else
             {
-                lblResultText.Content = "Please provide correct amount stupid ;)";
+                lblResultText.Content = "Please provide correct amount ;)";
                 lblResultText.Foreground = Brushes.Red;
                 lblTaxAmount.Content = "";
 
@@ -64,8 +70,8 @@ namespace TaxCalcApp
             {
                 switch (startYear)
                 {
-                    case (int)TaxYearEnum.FY2019_20 : return new TaxSlab2019_2020();                          
-                    case (int)TaxYearEnum.FY2020_21 : return new TaxSlab2020_2021();
+                    case (int)TaxYearEnum.FY2019_20: return new TaxSlab2019_2020();
+                    case (int)TaxYearEnum.FY2020_21: return new TaxSlab2020_2021();
                     default: return new TaxSlab2019_2020();
                 }
             }

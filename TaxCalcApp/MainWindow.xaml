@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaxCalcApp"
         mc:Ignorable="d"
-        Title="Tax Calculation" Height="298" d:DesignWidth="474" MaxHeight="300" MaxWidth="480" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+        Title="Tax Calculation" Height="500" d:DesignWidth="500" MaxHeight="500" MaxWidth="500" WindowStartupLocation="CenterScreen" FontSize="14" ResizeMode="CanMinimize" Icon="taxCut.png" Cursor="Arrow" WindowStyle="ThreeDBorderWindow">
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo Description="Hello" ProgressState="Indeterminate" ProgressValue="50"/>
     </Window.TaskbarItemInfo>
-    <Grid Margin="0,0,2,0">
+    <Grid Margin="0,0,2,13">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblAmount" Content="Enter Taxable Amount" Margin="49,53,0,0" VerticalAlignment="Top" Height="32" Width="197" IsEnabled="False" FontSize="16" HorizontalAlignment="Left"/>
-        <TextBox x:Name="txtAmount" HorizontalAlignment="Left" Height="32" Margin="251,53,0,0" VerticalAlignment="Top" Width="176" FontSize="16" FontWeight="Bold"/>
-        <Button Content="Calculate Tax" HorizontalAlignment="Left" Margin="49,114,0,0" VerticalAlignment="Top" Width="378" RenderTransformOrigin="0.5,0.5" Click="CalcTaxClick" Height="30" FontSize="16" Foreground="#FF167C72" Background="#FFCED61A" FontWeight="ExtraBold">
+        <TextBox x:Name="txtAmount" HorizontalAlignment="Left" Height="32" Margin="251,53,0,0" VerticalAlignment="Top" Width="194" FontSize="16" FontWeight="Bold"/>
+        <Button Content="Calculate Tax" HorizontalAlignment="Left" Margin="49,114,0,0" VerticalAlignment="Top" Width="396" RenderTransformOrigin="0.5,0.5" Click="CalcTaxClick" Height="30" FontSize="16" Foreground="#FF167C72" Background="#FFCED61A" FontWeight="ExtraBold">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1" ScaleX="1"/>
@@ -27,12 +27,13 @@
             </Button.RenderTransform>
         </Button>
         <Label x:Name="lblResultText" Content="" HorizontalAlignment="Left" Margin="49,165,0,0" VerticalAlignment="Top" Height="29" Width="265" FontSize="14"/>
-        <Label x:Name="lblTaxAmount" Content="" HorizontalAlignment="Left" Margin="318,165,0,0" VerticalAlignment="Top" Height="29" Width="109" FontWeight="SemiBold" RenderTransformOrigin="-0.78,2.138" Foreground="#FF0091FF" FontSize="14"/>
-        <ComboBox x:Name="comboTaxYear" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="176" IsReadOnly="True" Height="28">
+        <Label x:Name="lblTaxAmount" Content="" HorizontalAlignment="Left" Margin="318,165,0,0" VerticalAlignment="Top" Height="29" Width="127" FontWeight="SemiBold" RenderTransformOrigin="-0.78,2.138" Foreground="#FF0091FF" FontSize="14"/>
+        <ComboBox x:Name="comboTaxYear" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="194" IsReadOnly="True" Height="28">
             <ComboBoxItem Content="2019-20" IsSelected="True" Background="{x:Null}"/>
             <ComboBoxItem Content="2020-21"/>
         </ComboBox>
         <Label x:Name="lblTaxYear" Content="Select Tax Year" Margin="49,10,0,0" VerticalAlignment="Top" Height="32" Width="197" IsEnabled="False" FontSize="16" HorizontalAlignment="Left"/>
+        <Label x:Name="lblTaxSegregate" Content="" HorizontalAlignment="Left" Margin="49,232,0,0" VerticalAlignment="Top" Height="193" Width="396" FontSize="14"/>
 
     </Grid>
 </Window>
