@@ -28,12 +28,10 @@
         </Button>
         <Label x:Name="lblResultText" Content="" HorizontalAlignment="Left" Margin="49,165,0,0" VerticalAlignment="Top" Height="29" Width="265" FontSize="14"/>
         <Label x:Name="lblTaxAmount" Content="" HorizontalAlignment="Left" Margin="318,165,0,0" VerticalAlignment="Top" Height="29" Width="127" FontWeight="SemiBold" RenderTransformOrigin="-0.78,2.138" Foreground="#FF0091FF" FontSize="14"/>
-        <ComboBox x:Name="comboTaxYear" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="194" IsReadOnly="True" Height="28">
-            <ComboBoxItem Content="2019-20" IsSelected="True" Background="{x:Null}"/>
-            <ComboBoxItem Content="2020-21"/>
-        </ComboBox>
-        <Label x:Name="lblTaxYear" Content="Select Tax Year" Margin="49,10,0,0" VerticalAlignment="Top" Height="32" Width="197" IsEnabled="False" FontSize="16" HorizontalAlignment="Left"/>
+        <Label x:Name="lblTaxRegime" Content="Tax Regime" Margin="49,10,0,0" VerticalAlignment="Top" Height="32" Width="197" IsEnabled="False" FontSize="16" HorizontalAlignment="Left"/>
         <Label x:Name="lblTaxSegregate" Content="" HorizontalAlignment="Left" Margin="49,232,0,0" VerticalAlignment="Top" Height="193" Width="396" FontSize="14"/>
+        <RadioButton x:Name="rbTaxRegimeOld" Content="Old" HorizontalAlignment="Left" Margin="251,18,0,0" VerticalAlignment="Top" GroupName="rgTaxRegime" IsChecked="True" Checked="rbTaxRegime_Checked"/>
+        <RadioButton x:Name="rbTaxRegimeNew" Content="New" HorizontalAlignment="Left" Margin="318,18,0,0" VerticalAlignment="Top" GroupName="rgTaxRegime" Checked="rbTaxRegime_Checked"/>
 
     </Grid>
 </Window>

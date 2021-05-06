@@ -70,9 +70,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Interface\ITaxSlab.cs" />
-    <Compile Include="Models\TaxSlab2019-2020.cs" />
-    <Compile Include="Models\TaxSlab2020_2021.cs" />
+    <Compile Include="Models\Interface\ITaxRegime.cs" />
+    <Compile Include="Models\TaxRegimeOld.cs" />
+    <Compile Include="Models\TaxRegimeNew.cs" />
     <Compile Include="Models\TaxSlabRange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

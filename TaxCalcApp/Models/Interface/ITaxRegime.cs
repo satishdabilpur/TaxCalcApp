@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaxCalcApp.Enums
+namespace TaxCalcApp.Models
 {
-    public enum TaxYearEnum
+    public interface ITaxRegime
     {
-        FY2019_20 = 2019,
-        FY2020_21,
+        List<TaxSlabRange> GetTaxSlabRanges();
     }
 }

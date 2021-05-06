@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaxCalcApp.Models
+namespace TaxCalcApp.Enums
 {
-    public interface ITaxSlab
+    public enum TaxRegimeEnum
     {
-        List<TaxSlabRange> GetTaxSlabRanges();
+        Old = 0,
+        New = 1,
     }
 }

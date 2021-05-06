@@ -24,6 +24,7 @@ namespace TaxCalcApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        string selectedTaxRegime = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -31,11 +32,10 @@ namespace TaxCalcApp
 
         private void CalcTaxClick(object sender, RoutedEventArgs e)
         {
-            string selectedTaxTearSlab = (comboTaxYear.SelectedItem as ComboBoxItem).Content.ToString();
             if (double.TryParse(txtAmount.Text, out double Amount) && Amount > 0)
             {
-                ITaxSlab taxSlab = GetTaxSlab(selectedTaxTearSlab);
-                var taxSlabRange = taxSlab.GetTaxSlabRanges();
+                ITaxRegime taxRegime = GetTaxRegime(selectedTaxRegime);
+                var taxSlabRange = taxRegime.GetTaxSlabRanges();
                 double calcTax = 0;
                 lblTaxSegregate.Content = "Tax Segregated details: \r\n";
                 do
@@ -64,27 +64,31 @@ namespace TaxCalcApp
             }
         }
 
-        private ITaxSlab GetTaxSlab(string selectedTaxTearSlab)
+        private ITaxRegime GetTaxRegime(string selectedRegime)
         {
-            if (int.TryParse(selectedTaxTearSlab.Substring(0, 4), out int startYear))
+            ITaxRegime tax;
+            if(selectedRegime == TaxRegimeEnum.Old.ToString())
             {
-                switch (startYear)
-                {
-                    case (int)TaxYearEnum.FY2019_20: return new TaxSlab2019_2020();
-                    case (int)TaxYearEnum.FY2020_21: return new TaxSlab2020_2021();
-                    default: return new TaxSlab2019_2020();
-                }
+                tax = new TaxRegimeOld();
             }
             else
             {
-                return new TaxSlab2019_2020();
+                tax = new TaxRegimeNew();
             }
+
+            return tax;
         }
 
         private double CalcPercentageAmount(double amount, int perc)
         {
             var percAmount = amount * (perc / 100f);
             return percAmount;
+        }
+
+        private void rbTaxRegime_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            selectedTaxRegime = rb.Content.ToString();
         }
     }
 }

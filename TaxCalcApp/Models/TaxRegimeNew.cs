@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaxCalcApp.Models
 {
-    public class TaxSlab2020_2021 : ITaxSlab
+    public class TaxRegimeNew : ITaxRegime
     { 
         public List<TaxSlabRange> GetTaxSlabRanges()
         {
