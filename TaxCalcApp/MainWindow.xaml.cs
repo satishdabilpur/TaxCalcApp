@@ -34,6 +34,14 @@ namespace TaxCalcApp
         {
             if (double.TryParse(txtAmount.Text, out double Amount) && Amount > 0)
             {
+                if(Amount <= 500000)
+                {
+                    lblResultText.Content = $" Total tax for your income:";
+                    string zeroAmount = string.Format(new CultureInfo("en-IN", false), "{0:n}", 0);
+                    lblTaxAmount.Content = $"Rs. {zeroAmount}/-";
+                    lblTaxSegregate.Content = "";
+                    return;
+                }
                 ITaxRegime taxRegime = GetTaxRegime(selectedTaxRegime);
                 var taxSlabRange = taxRegime.GetTaxSlabRanges();
                 double calcTax = 0;
